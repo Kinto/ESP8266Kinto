@@ -18,7 +18,10 @@ Kinto kinto(
   "password",                        // password
   "default",                         // bucket
   "sensors",                         // collection
-  "CF:8A:24:95:49:F0:5A:1F:3B:EB:15:C0:72:F4:C9:D6:19:3F:EC:FB" // server ssl fingerprint needed for a HTTPS connection
+  // the server ssl fingerprint is needed for a HTTPS connection
+  // get it using the following command in a terminal:
+  // echo | openssl s_client -connect kinto.dev.mozaws.net:443 |& openssl x509 -fingerprint -noout
+  "CF:8A:24:95:49:F0:5A:1F:3B:EB:15:C0:72:F4:C9:D6:19:3F:EC:FB"
 );
 
 void setup()
