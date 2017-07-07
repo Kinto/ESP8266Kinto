@@ -54,5 +54,25 @@ void Kinto::post(String json) {
   digitalWrite(LED_BUILTIN, HIGH);
 };
 
+void Kinto::patch(String id, String json) {
+  digitalWrite(LED_BUILTIN, LOW);
+
+  String recordUrl = url +  + "/" + id;
+  Serial.println(recordUrl);
+  Serial.println(json);
+  HTTPClient http;
+  if (server[4] == 's') {
+    http.begin(recordUrl, fingerprint);
+  }
+  else {
+    http.begin(recordUrl);
+  }
+  http.addHeader("Content-Type", "application/json");
+  http.setAuthorization(token, secret);
+  http.sendRequest("PATCH", (uint8_t *) json.c_str(), json.length());
+  http.end();
+
+  digitalWrite(LED_BUILTIN, HIGH);
+};
 // Private Methods /////////////////////////////////////////////////////////////
 // Functions only available to other functions in this library
