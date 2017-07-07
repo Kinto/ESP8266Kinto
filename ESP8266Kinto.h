@@ -15,6 +15,7 @@ class Kinto
   public:
     Kinto(char* server, char* token, char* secret, char* bucket, char* collection, char* fingerprint);
     void post(String json);
+    void patch(String id, String json);
 
   // library-accessible "private" interface
   private:
