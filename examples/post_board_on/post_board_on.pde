@@ -7,9 +7,7 @@
 
 // We need a WiFi connection
 #include <ESP8266WiFi.h>
-
-const char* ssid     = "your-ssid";
-const char* password = "your-password";
+#include <WiFiManager.h>             //https://github.com/tzapu/WiFiManager
 
 // Kinto object creation
 Kinto kinto(
@@ -30,18 +28,8 @@ void setup()
   Serial.begin(115200);
 
   // we start by connecting to a WiFi network
-
-  WiFi.begin(ssid, password);
-
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-
-  Serial.println("");
-  Serial.println("WiFi connected");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
+  WiFiManager wifiManager;
+  wifiManager.autoConnect("ESP8266");
 
   // then we send a message on start
   String json = "{\"data\": {\"board\": \"on\"}}";
