@@ -1,4 +1,7 @@
 # ESP8266Kinto
+
+[![Build Status](https://travis-ci.org/Kinto/ESP8266Kinto.svg?branch=master)](https://travis-ci.org/Kinto/ESP8266Kinto)
+
 Kinto library for ESP8266 Arduino
 
 ## Installation
