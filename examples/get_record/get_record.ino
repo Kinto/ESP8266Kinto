@@ -31,9 +31,13 @@ void setup()
   WiFiManager wifiManager;
   wifiManager.autoConnect("ESP8266");
 
-  // then we send a message on start
-  String json = "{\"data\": {\"board\": \"on\"}}";
-  kinto.post(json);
+  // we create a buffer
+  //String json;
+
+  // then we get a record
+  String json = kinto.getRecord("96992675-24d5-4e87-b009-9c75f5f9e2d3");
+
+  Serial.println(json);
 }
 
 void loop()

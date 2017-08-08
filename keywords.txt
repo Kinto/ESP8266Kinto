@@ -6,6 +6,7 @@
 # Datatypes (KEYWORD1)
 #######################################
 
+ESP8266Kinto	KEYWORD1
 Kinto	KEYWORD1
 
 #######################################
@@ -13,6 +14,8 @@ Kinto	KEYWORD1
 #######################################
 
 post	KEYWORD2
+patch	KEYWORD2
+getRecord	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)

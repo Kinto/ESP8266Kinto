@@ -26,7 +26,6 @@ Kinto::Kinto(char* server, char* token, char* secret, char* bucket, char* collec
   this->url = String(server) + "/buckets/" + String(bucket) + "/collections/" + String(collection) + "/records";
 
   // do whatever is required to initialize the library
-  //Serial.begin(9600);
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, HIGH);
 };
@@ -37,8 +36,10 @@ Kinto::Kinto(char* server, char* token, char* secret, char* bucket, char* collec
 void Kinto::post(String json) {
   digitalWrite(LED_BUILTIN, LOW);
 
+  // XXX: #7 Only println in DEBUG mode.
   Serial.println(url);
   Serial.println(json);
+
   HTTPClient http;
   if (server[4] == 's') {
     http.begin(url, fingerprint);
@@ -58,8 +59,10 @@ void Kinto::patch(String id, String json) {
   digitalWrite(LED_BUILTIN, LOW);
 
   String recordUrl = url +  + "/" + id;
+  // XXX: #7 Only println in DEBUG mode.
   Serial.println(recordUrl);
   Serial.println(json);
+
   HTTPClient http;
   if (server[4] == 's') {
     http.begin(recordUrl, fingerprint);
@@ -74,5 +77,41 @@ void Kinto::patch(String id, String json) {
 
   digitalWrite(LED_BUILTIN, HIGH);
 };
+
+String Kinto::getRecord(String id) {
+  String json; // buffer
+  String url1 = url + "/" + id;
+
+  digitalWrite(LED_BUILTIN, LOW);
+
+  // XXX: #7 Only println in DEBUG mode.
+  Serial.println(url1);
+  Serial.println(json);
+
+  HTTPClient http;
+  if (server[4] == 's') {
+    http.begin(url1, fingerprint);
+  }
+  else {
+    http.begin(url1);
+  }
+  http.addHeader("Accept", "application/json");
+  http.setAuthorization(token, secret);
+  int httpCode = http.GET();
+  if (httpCode > 0 ){
+    // HTTP header has been send and Server response header has been handled
+
+    // file found at server
+    if (httpCode == HTTP_CODE_OK) {
+      json = http.getString();
+    }
+  }
+  http.end();
+
+  digitalWrite(LED_BUILTIN, HIGH);
+
+  return json;
+};
+
 // Private Methods /////////////////////////////////////////////////////////////
 // Functions only available to other functions in this library
