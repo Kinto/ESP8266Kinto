@@ -6,6 +6,9 @@
 #ifndef ESP8266Kinto_h
 #define ESP8266Kinto_h
 
+// uncomment to activate debugging mode
+//#define DEBUG 1
+
 // include description files for other libraries used
 
 // library interface description

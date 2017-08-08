@@ -36,9 +36,10 @@ Kinto::Kinto(char* server, char* token, char* secret, char* bucket, char* collec
 void Kinto::post(String json) {
   digitalWrite(LED_BUILTIN, LOW);
 
-  // XXX: #7 Only println in DEBUG mode.
+  #ifdef DEBUG
   Serial.println(url);
   Serial.println(json);
+  #endif
 
   HTTPClient http;
   if (server[4] == 's') {
@@ -59,9 +60,11 @@ void Kinto::patch(String id, String json) {
   digitalWrite(LED_BUILTIN, LOW);
 
   String recordUrl = url +  + "/" + id;
-  // XXX: #7 Only println in DEBUG mode.
+
+  #ifdef DEBUG
   Serial.println(recordUrl);
   Serial.println(json);
+  #endif
 
   HTTPClient http;
   if (server[4] == 's') {
@@ -84,9 +87,10 @@ String Kinto::getRecord(String id) {
 
   digitalWrite(LED_BUILTIN, LOW);
 
-  // XXX: #7 Only println in DEBUG mode.
+  #ifdef DEBUG
   Serial.println(url1);
   Serial.println(json);
+  #endif
 
   HTTPClient http;
   if (server[4] == 's') {
