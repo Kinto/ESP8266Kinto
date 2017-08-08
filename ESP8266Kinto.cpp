@@ -90,14 +90,14 @@ String Kinto::getRecord(String id) {
   else {
     http.begin(url1);
   }
-  //http.addHeader("Content-Type", "application/json");
+  http.addHeader("Accept", "application/json");
   http.setAuthorization(token, secret);
   int httpCode = http.GET();
-  if(httpCode > 0 ){
+  if (httpCode > 0 ){
     // HTTP header has been send and Server response header has been handled
 
     // file found at server
-    if(httpCode == HTTP_CODE_OK) {
+    if (httpCode == HTTP_CODE_OK) {
       json = http.getString();
     }
   }
