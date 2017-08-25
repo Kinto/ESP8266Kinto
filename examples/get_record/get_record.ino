@@ -32,10 +32,10 @@ void setup()
   wifiManager.autoConnect("ESP8266");
 
   // we create a buffer
-  //String json;
+  String json;
 
   // then we get a record
-  String json = kinto.getRecord("96992675-24d5-4e87-b009-9c75f5f9e2d3");
+  json = kinto.getRecord("96992675-24d5-4e87-b009-9c75f5f9e2d3");
 
   Serial.println(json);
 }
