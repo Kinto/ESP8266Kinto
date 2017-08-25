@@ -16,6 +16,7 @@ Kinto	KEYWORD1
 post	KEYWORD2
 patch	KEYWORD2
 getRecord	KEYWORD2
+getRecords	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)

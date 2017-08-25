@@ -34,8 +34,13 @@ void setup()
   // we create a buffer
   String json;
 
-  // then we get a record
-  json = kinto.getRecord("96992675-24d5-4e87-b009-9c75f5f9e2d3");
+  // then we get a records collection
+  json = kinto.getRecords();
+
+  Serial.println(json);
+
+  // or we get a records collection filtered
+  json = kinto.getRecords("_fields=id,last_modified");
 
   Serial.println(json);
 }

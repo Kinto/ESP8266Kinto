@@ -19,7 +19,9 @@ class Kinto
     Kinto(char* server, char* token, char* secret, char* bucket, char* collection, char* fingerprint);
     void post(String json);
     void patch(String id, String json);
-    String getRecord(String json);
+    String getRecord(String id);
+    String getRecords();
+    String getRecords(String filter);
 
   // library-accessible "private" interface
   private:
