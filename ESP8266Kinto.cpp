@@ -117,5 +117,76 @@ String Kinto::getRecord(String id) {
   return json;
 };
 
+String Kinto::getRecords() {
+  String json; // buffer
+
+  digitalWrite(LED_BUILTIN, LOW);
+
+  #ifdef DEBUG
+  Serial.println(url);
+  #endif
+
+  HTTPClient http;
+  if (server[4] == 's') {
+    http.begin(url, fingerprint);
+  }
+  else {
+    http.begin(url);
+  }
+  http.addHeader("Accept", "application/json");
+  http.setAuthorization(token, secret);
+  int httpCode = http.GET();
+  if (httpCode > 0 ){
+    // HTTP header has been send and Server response header has been handled
+
+    // file found at server
+    if (httpCode == HTTP_CODE_OK) {
+      json = http.getString();
+    }
+  }
+  http.end();
+
+  digitalWrite(LED_BUILTIN, HIGH);
+
+  return json;
+};
+
+String Kinto::getRecords(String filter) {
+  String json; // buffer
+  String url1 = url + "?" + filter;
+
+  digitalWrite(LED_BUILTIN, LOW);
+
+  #ifdef DEBUG
+  Serial.println(url1);
+  Serial.println(json);
+  #endif
+
+  HTTPClient http;
+  if (server[4] == 's') {
+    http.begin(url1, fingerprint);
+  }
+  else {
+    http.begin(url1);
+  }
+  http.addHeader("Accept", "application/json");
+  http.setAuthorization(token, secret);
+  int httpCode = http.GET();
+  if (httpCode > 0 ){
+    // HTTP header has been send and Server response header has been handled
+
+    // file found at server
+    if (httpCode == HTTP_CODE_OK) {
+      json = http.getString();
+    }
+  }
+  http.end();
+
+  digitalWrite(LED_BUILTIN, HIGH);
+
+  return json;
+};
+
+
 // Private Methods /////////////////////////////////////////////////////////////
 // Functions only available to other functions in this library

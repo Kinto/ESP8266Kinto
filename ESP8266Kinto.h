@@ -20,6 +20,8 @@ class Kinto
     void post(String json);
     void patch(String id, String json);
     String getRecord(String id);
+    String getRecords();
+    String getRecords(String filter);
 
   // library-accessible "private" interface
   private:
